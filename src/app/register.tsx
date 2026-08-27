@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import { useState } from "react";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import CountryPicker, {
   Country,
@@ -105,6 +105,8 @@ const HomePage = () => {
           backgroundColor='#004CFF'
         />
       </View>
+
+      <Link style={{ marginVertical: 20, fontSize: 20}} href={'/password'}>Password page</Link>
 
       <View style={styles.cancelButton}>
         <Button
