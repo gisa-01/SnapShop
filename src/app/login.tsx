@@ -2,7 +2,11 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { router } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import loginBubble1 from "@/assets/snapShopIcons/loginbubble1.png";
+import loginBubble2 from "@/assets/snapShopIcons/loginbubble2.png";
+import loginBubble3 from "@/assets/snapShopIcons/loginbubble3.png";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,6 +22,20 @@ const Login = () => {
   };
   return (
     <View>
+
+      <View style={styles.iconsContainer}>
+        <View style={styles.image1}>
+          <Image source={loginBubble1} />
+        </View>
+
+        <View style={styles.image2}>
+          <Image source={loginBubble2} />
+        </View>
+        <View style={styles.image3}>
+          <Image source={loginBubble3}/>
+        </View>
+      </View>
+
       <View>
         <Text style={styles.title}>Login</Text>
         <Text style={styles.subtitle}>
@@ -52,8 +70,25 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
+  iconsContainer:{
+    position:'relative',
+
+  },
+  image1: {
+    zIndex: 1
+  },
+  image2: {
+    position: 'absolute'
+  },
+  image3: {
+    position:'absolute',
+    right:0,
+    top: 239
+  },
+
+
   title: {
-    marginTop: 500,
+    marginTop: 150,
     fontSize: 52,
     left: 20,
     fontWeight: "bold",
@@ -62,6 +97,7 @@ const styles = StyleSheet.create({
   subtitle: {
     left: 20,
     fontSize: 16,
+    marginTop: 10,
     color: "#666666",
   },
 
@@ -69,22 +105,27 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#060000",
   },
+
   input: {
-    marginTop: 10,
+    marginTop: 20,
     left: 20,
+    width:335
+  
   },
-  inputSpace: {},
+  inputSpace: {
+    width:'100%',
+  },
 
   button: {
     left: 20,
-    marginTop: 10,
+    marginTop: 20,
   },
 
   cancelText: {
     fontSize: 18,
     color: "#050202",
     left: 150,
-    marginTop: 10,
+    marginTop: 20,
   },
 
   cancelButton: {},

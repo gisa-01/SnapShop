@@ -56,7 +56,7 @@ export default Input;
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: 295,
+    width: 335,
     height: 50,
     borderWidth: 1,
     borderColor: "#D2D2D2",
