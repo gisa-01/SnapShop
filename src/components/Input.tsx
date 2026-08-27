@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import { Pressable, StyleSheet, TextInput, View, TextStyle } from "react-native";
 import { useState } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
@@ -8,6 +8,7 @@ type InputProps = {
   onChangeText: (text: string) => void;
   keyboardType?: "default" | "email-address" | "numeric";
   secureTextInput?: boolean;
+  style?: TextStyle;
 };
 
 const Input = ({
@@ -16,6 +17,7 @@ const Input = ({
   onChangeText,
   keyboardType = "default",
   secureTextInput = false,
+  style,
 }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -31,7 +33,7 @@ const Input = ({
         secureTextEntry={secureTextInput && !showPassword}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        style={styles.input}
+        style={[styles.input, style]}
       />
 
       {secureTextInput && (
