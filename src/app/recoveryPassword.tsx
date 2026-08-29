@@ -1,14 +1,19 @@
+import bubble01 from "@/assets/snapShopIcons/bubble-01.png";
+import bubble02 from "@/assets/snapShopIcons/bubble-02.png";
+import image1 from "@/assets/snapShopIcons/image1.png";
 import Button from "@/components/Button";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import image1 from "@/assets/snapShopIcons/image1.png";
-import bubble01 from "@/assets/snapShopIcons/bubble-01.png";
-import bubble02 from "@/assets/snapShopIcons/bubble-02.png";
 const RecoveryPassword = () => {
   const [selectedMethod, setSelectedMethod] = useState<"sms" | "email">("sms");
   const handleNext = () => {
-    console.log("selectedMethod:", selectedMethod);
+    if (selectedMethod === "sms") {
+      router.push("/login");
+    } 
+    else if(selectedMethod === "email"){
+      router.push("/login");
+    }
   };
   const handleCancel = () => {
     router.back();
@@ -20,13 +25,13 @@ const RecoveryPassword = () => {
         <View style={styles.image1}>
           <Image source={image1} />
         </View>
-      
-      <View style={[styles.headerText]}>
-        <Text style={styles.title}>Password Recovery</Text>
-        <Text style={styles.subtitle}>
-          How would you like to restore {"\n"} your password?
-        </Text>
-      </View>
+
+        <View style={[styles.headerText]}>
+          <Text style={styles.title}>Password Recovery</Text>
+          <Text style={styles.subtitle}>
+            How would you like to restore {"\n"} your password?
+          </Text>
+        </View>
       </View>
 
       <View style={styles.optionsContainer}>
@@ -41,20 +46,14 @@ const RecoveryPassword = () => {
           onPress={() => setSelectedMethod("sms")}
           activeOpacity={0.8}
         >
-          <Text style={[styles.optionText, selectedMethod === "sms" && styles.smsSelectedText,]}>
-             SMS
-          </Text>
-          
-          <View
+          <Text
             style={[
-              styles.radioCircle,
-              selectedMethod === "sms"
-              ? styles.radioCircle
-              :styles.unSelectedCard,
+              styles.optionText,
+              selectedMethod === "sms" && styles.smsSelectedText,
             ]}
           >
-            {selectedMethod === "sms" && <Text style={styles.checkMark}></Text>}
-          </View>
+            SMS
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -67,24 +66,14 @@ const RecoveryPassword = () => {
           onPress={() => setSelectedMethod("email")}
           activeOpacity={0.8}
         >
-          <Text style={[styles.optionText,
-            selectedMethod === "email" && styles.emailSelectedText,
-          ]}
-        >
+          <Text
+            style={[
+              styles.optionText,
+              selectedMethod === "email" && styles.emailSelectedText,
+            ]}
+          >
             Email
           </Text>
-          <View
-            style={[
-              styles.emailRadioCircle,
-              selectedMethod === "email"
-              ? styles.emailRadioCircle
-              : styles.unSelectedRadioCircle,
-               ]}
-               >
-             {selectedMethod === "email" && 
-             (<Text style={styles.checkMark}>✓</Text>
-              )}
-           </View>
         </TouchableOpacity>
       </View>
       <View style={styles.buttonContainer}>
@@ -116,33 +105,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     position: "relative",
-    alignItems: 'center',
-
+    alignItems: "center",
   },
 
   profile: {
     position: "relative",
     marginTop: 200,
-    alignItems: 'center',
-    justifyContent:'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   bubble01: {
-    position:'absolute',
-    right:0,
-    zIndex:1,
-    top:0
+    position: "absolute",
+    right: 0,
+    zIndex: 1,
+    top: 0,
   },
   bubble02: {
-    position:'absolute',
-    right:0,
+    position: "absolute",
+    right: 0,
   },
 
   image1: {
     zIndex: 1,
   },
-  
-    headerText:{
+
+  headerText: {
     alignContent: "center",
   },
 
@@ -152,15 +140,15 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     textAlign: "center",
     color: "#070101",
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   subtitle: {
     fontSize: 18,
     fontFamily: "Nunito Sans",
-    color: '#555555',
+    color: "#555555",
     textAlign: "center",
-    marginBottom: 8,
+    marginBottom: 10,
   },
 
   optionsContainer: {
@@ -171,66 +159,56 @@ const styles = StyleSheet.create({
 
   optionCard: {
     borderRadius: 24,
-    flexDirection: "row",
     width: "100%",
     height: 48,
     alignItems: "center",
-    paddingHorizontal: 16,
-    position: "relative",
-    
+    justifyContent: "center",
   },
 
   smsSelectedCard: {
     backgroundColor: "#E6EEFF",
     fontWeight: "700",
   },
-  emailSelectedText:{
+  emailSelectedText: {
+    color: "#0052FF",
+    fontWeight: "700",
+
   },
 
   unSelectedCard: {
     backgroundColor: "#FFF0F0",
-    fontWeight: "700",
-    marginBottom: 40,
+
   },
 
   optionText: {
     color: "#050404",
-    left: 120,
+    fontWeight: "600",
+    fontSize: 15,
   },
 
   smsSelectedText: {
     color: "#0052FF",
     fontWeight: "700",
-    left: 120,
+    
   },
-
-  radioCircle: {
- 
-  },
-
-  smsRadioCircle: {},
 
   cancelButton: {},
 
   emailSelected: {},
 
-  emailRadioCircle: {},
-
-  buttonContainer: {},
-
-  checkMark: {},
+  buttonContainer: {
+    top: 60,
+  },
 
   cancelText: {
-    left: 150,
+    textAlign: "center",
+    color: "#000000",
     top: 20,
+    fontSize: 20,
+    
+
   },
   emailSelectedCard: {
-
+    backgroundColor: "#E6EEFF"
   },
-
-  unSelectedRadioCircle: {
-
-  },
-  
-
 });
