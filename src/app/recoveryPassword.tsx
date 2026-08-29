@@ -9,7 +9,7 @@ const RecoveryPassword = () => {
   const [selectedMethod, setSelectedMethod] = useState<"sms" | "email">("sms");
   const handleNext = () => {
     if (selectedMethod === "sms") {
-      router.push("/login");
+      router.push("/smsRecovery");
     } 
     else if(selectedMethod === "email"){
       router.push("/login");
