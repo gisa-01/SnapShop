@@ -11,10 +11,7 @@ import loginBubble3 from "@/assets/snapShopIcons/loginbubble3.png";
 const Login = () => {
   const [email, setEmail] = useState("");
 
-  const handleNext = () => {
-    console.log("Cancel Pressed");
-    router.push("/password");
-  };
+ 
 
   const handleCancel = () => {
     console.log("Cancel Pressed");
@@ -56,7 +53,7 @@ const Login = () => {
         <Button
           title="Next"
           backgroundColor={"#004CFF"}
-          onPress={() => console.log("Next button pressed")}
+          onPress={() => router.push('/recoveryPassword')}
         />
 
         <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
