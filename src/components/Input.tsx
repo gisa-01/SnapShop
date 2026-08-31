@@ -17,7 +17,11 @@ const Input = ({
   onChangeText,
   keyboardType = "default",
   secureTextInput = false,
+<<<<<<< HEAD
+  style
+=======
   style,
+>>>>>>> 08b4e6c140940171836f16d6c27c8bd61ea8f414
 }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -56,7 +60,7 @@ export default Input;
 
 const styles = StyleSheet.create({
   inputContainer: {
-    width: 295,
+    width: 335,
     height: 50,
     borderWidth: 1,
     borderColor: "#D2D2D2",
