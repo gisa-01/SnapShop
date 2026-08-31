@@ -12,7 +12,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  View
+  View,
 } from "react-native";
 
 const Password = () => {
