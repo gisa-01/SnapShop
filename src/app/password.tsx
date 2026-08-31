@@ -3,7 +3,7 @@ import bubblepass2 from "@/assets/snapShopIcons/bubblepass2.png";
 import profilePicture from "@/assets/snapShopIcons/profilePicture.png";
 import Input from "@/components/Input";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Image,
@@ -56,8 +56,9 @@ const Password = () => {
         />
       </View>
 
-      <Text style={styles.forgotPassword}>Forgot your password?</Text>
-
+      <Link style={styles.forgotPassword} href='/recoveryPassword'>
+        <Text>Forgot your password?</Text>
+      </Link>
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -103,7 +104,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     position: "absolute",
     top: 150,
-    left: 135,
+    left: 160,
     right: 100,
     zIndex: 2,
   },
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
   userPasswordContainer: {
     position: "absolute",
     top: 280,
-    left: 86,
+    left: 130,
     right: 100,
   },
   helloUser: {

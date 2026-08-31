@@ -106,8 +106,6 @@ const HomePage = () => {
         />
       </View>
 
-      <Link style={{ marginVertical: 20, fontSize: 20}} href={'/password'}>Password page</Link>
-
       <View style={styles.cancelButton}>
         <Button
           title={"Cancel"}

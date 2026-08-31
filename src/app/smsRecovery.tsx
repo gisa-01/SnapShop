@@ -3,6 +3,7 @@ import bubble02 from "@/assets/snapShopIcons/bubble-02.png";
 import image1 from "@/assets/snapShopIcons/image1.png";
 import { Image, StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import React, { useState, useRef } from 'react';
+import { router, useRoute, useRouter } from "expo-router";
 
 const smsRecovery = () => {
 const [code, setCode] = useState(["", "", "", ""]);
@@ -12,6 +13,7 @@ const inputRef = [
   useRef<TextInput>(null),
   useRef<TextInput>(null),
 ];
+const router = useRouter();
 
 const handleChangeText = (text: string, index: number) => {
   const newCode = [...code];
@@ -28,6 +30,10 @@ const handleKeyPress = (e: any, index: number) => {
       inputRef[index - 1].current?.focus();
     }
   };
+
+const handleCancel = () => {
+    router.back();
+};
   
   return (
     <View style={styles.container}>
@@ -58,9 +64,10 @@ const handleKeyPress = (e: any, index: number) => {
             <Text style={styles.sendAgainText}>Send Again</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.cancelButton} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.cancelButton} onPress={handleCancel} activeOpacity={0.7}>
             <Text style={styles.cancelText}>Cancel</Text>
         </TouchableOpacity>
+        
       </View>
 
       <View style={styles.bubble01}>
