@@ -12,7 +12,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  View
+  View,
 } from "react-native";
 
 const Password = () => {
@@ -53,27 +53,28 @@ const Password = () => {
           placeholder="password"
           value={password}
           onChangeText={setPassword}
+          secureTextInput
         />
       </View>
 
       <Text style={styles.forgotPassword}>Forgot your password?</Text>
 
+      <View style={styles.notYouContainer}>
+        <Text style={{ color: "#202020", fontWeight: "300", fontSize: 15 }}>
+          Not you?
+        </Text>
+        <Pressable
+          onPress={() => router.push("/login")}
+          style={styles.arrowContainer}
+        >
+          <FontAwesome name="long-arrow-right" color="#FFFFFF" size={24} />
+        </Pressable>
+      </View>
+
       <KeyboardAvoidingView
         style={styles.container}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <View style={styles.notYouContainer}>
-          <Text style={{ color: "#202020", fontWeight: "300", fontSize: 15 }}>
-            Not you?
-          </Text>
-          <Pressable
-            onPress={() => router.push("/login")}
-            style={styles.arrowContainer}
-          >
-            <FontAwesome name="long-arrow-right" color="#FFFFFF" size={24} />
-          </Pressable>
-        </View>
-      </KeyboardAvoidingView>
+      ></KeyboardAvoidingView>
     </View>
   );
 };
