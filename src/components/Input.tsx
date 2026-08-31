@@ -17,7 +17,11 @@ const Input = ({
   onChangeText,
   keyboardType = "default",
   secureTextInput = false,
+<<<<<<< HEAD
   style
+=======
+  style,
+>>>>>>> 08b4e6c140940171836f16d6c27c8bd61ea8f414
 }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -79,4 +83,6 @@ const styles = StyleSheet.create({
   eyeButton: {
     paddingHorizontal: 15,
   },
+
+  
 });
