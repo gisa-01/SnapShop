@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { useState } from "react";
 import { Link, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -37,7 +37,15 @@ const HomePage = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView
+        contentContainerStyle={styles.content}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
       <StatusBar style="light" />
 
       <View>
@@ -114,7 +122,8 @@ const HomePage = () => {
           style={styles.buttonColor}
         />
       </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -123,9 +132,13 @@ export default HomePage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    position: "relative",
+    backgroundColor: "#FFFFFF",
+  },
+  content: {
+    flexGrow: 1,
     paddingTop: 100,
-    paddingLeft: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 32,
   },
 
   create: {
@@ -169,14 +182,12 @@ const styles = StyleSheet.create({
     marginLeft: 35
   },
   buttonContainer: {
-    position: 'absolute',
-    bottom: 100,
-    left: 27
+    marginTop: 32,
+    alignItems: "flex-start",
   },
   cancelButton: {
-    position: 'absolute',
-    bottom: 20,
-    left: 27
+    marginTop: 16,
+    alignItems: "flex-start",
   },
   buttonColor: {
     color:'#202020',

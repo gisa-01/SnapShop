@@ -2,7 +2,7 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { router } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import loginBubble1 from "@/assets/snapShopIcons/loginbubble1.png";
 import loginBubble2 from "@/assets/snapShopIcons/loginbubble2.png";
 import loginBubble3 from "@/assets/snapShopIcons/loginbubble3.png";
@@ -18,9 +18,17 @@ const Login = () => {
     router.back();
   };
   return (
-    <View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView
+        contentContainerStyle={styles.content}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
 
-      <View style={styles.iconsContainer}>
+      <View pointerEvents="none" style={styles.iconsContainer}>
         <View style={styles.image1}>
           <Image source={loginBubble1} />
         </View>
@@ -53,22 +61,33 @@ const Login = () => {
         <Button
           title="Next"
           backgroundColor={"#004CFF"}
-          onPress={() => router.push('/home')}
+          onPress={() => router.push('/password')}
         />
 
         <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
           <Text style={styles.cancelText}>Cancel</Text>
         </TouchableOpacity>
       </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 export default Login;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
+  content: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingBottom: 32,
+  },
   iconsContainer:{
     position:'relative',
+    marginLeft:-20
 
   },
   image1: {
@@ -79,10 +98,9 @@ const styles = StyleSheet.create({
   },
   image3: {
     position:'absolute',
-    right:0,
+    right:-20,
     top: 239
   },
-
 
   title: {
     marginTop: 150,
@@ -105,8 +123,7 @@ const styles = StyleSheet.create({
 
   input: {
     marginTop: 20,
-    left: 20,
-    width:335
+    width: "100%",
   
   },
   inputSpace: {
@@ -114,14 +131,13 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    left: 20,
     marginTop: 20,
   },
 
   cancelText: {
     fontSize: 18,
     color: "#050202",
-    left: 150,
+    textAlign: "center",
     marginTop: 20,
   },
 

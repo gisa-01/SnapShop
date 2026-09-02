@@ -9,6 +9,7 @@ type InputProps = {
   keyboardType?: "default" | "email-address" | "numeric";
   secureTextInput?: boolean;
   style?: TextStyle;
+  onSubmitEditing?: () => void;
 };
 
 const Input = ({
@@ -18,6 +19,7 @@ const Input = ({
   keyboardType = "default",
   secureTextInput = false,
   style,
+  onSubmitEditing
 }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
@@ -34,6 +36,7 @@ const Input = ({
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         style={[styles.input, style]}
+        onSubmitEditing={onSubmitEditing}
       />
 
       {secureTextInput && (

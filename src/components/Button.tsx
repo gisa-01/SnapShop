@@ -1,16 +1,17 @@
-import { Pressable, StyleSheet, Text, View, TextStyle } from 'react-native'
+import { Pressable, StyleSheet, Text, View, TextStyle, ViewStyle } from 'react-native'
 
 type buttonProps = {
   title: string;
   onPress: () => void;
   backgroundColor?: string;
   style?: TextStyle;
+  viewStyle?: ViewStyle;
 };
 
-const Button = ({ title, onPress, backgroundColor, style }: buttonProps) => {
+const Button = ({ title, onPress, backgroundColor, style , viewStyle}: buttonProps) => {
   return (
     <Pressable style={[
-      styles.button, 
+      styles.button, viewStyle,
       backgroundColor && {backgroundColor}
       ]} 
       onPress={onPress}>
