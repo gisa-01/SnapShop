@@ -1,7 +1,7 @@
 import bubble01 from "@/assets/snapShopIcons/bubble-01.png";
 import bubble02 from "@/assets/snapShopIcons/bubble-02.png";
 import image1 from "@/assets/snapShopIcons/image1.png";
-import { Image, StyleSheet, View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import React, { useState, useRef } from 'react';
 
 const smsRecovery = () => {
@@ -30,7 +30,15 @@ const handleKeyPress = (e: any, index: number) => {
   };
   
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView
+        contentContainerStyle={styles.content}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
       <View style={styles.profile}>
         <Image source={image1} />
         <Text style={styles.title}>Password Recovery</Text>
@@ -70,7 +78,8 @@ const handleKeyPress = (e: any, index: number) => {
       <View style={styles.bubble02}>
         <Image source={bubble02} />
       </View>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
 
   )
 }
@@ -82,7 +91,12 @@ const styles = StyleSheet.create({
 container: {
   flex: 1,
   backgroundColor: "#FFFFFF",
+},
+
+content: {
+  flexGrow: 1,
   alignItems: "center",
+  paddingBottom: 32,
 },
 
  bubble01: {

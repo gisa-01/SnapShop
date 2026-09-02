@@ -3,13 +3,14 @@ import bubblepass2 from "@/assets/snapShopIcons/bubblepass2.png";
 import profilePicture from "@/assets/snapShopIcons/profilePicture.png";
 import Input from "@/components/Input";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useRouter } from "expo-router";
+import { useRouter, Link } from "expo-router";
 import { useState } from "react";
 import {
   Image,
   KeyboardAvoidingView,
   Platform,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -22,7 +23,16 @@ const Password = () => {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView
+        contentContainerStyle={styles.content}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+
       <View style={styles.figureContainer}>
         <View style={styles.firstBubble}>
           <Image source={bubblepass1} />
@@ -32,14 +42,17 @@ const Password = () => {
         </View>
       </View>
 
+
       <View style={styles.profileContainer}>
         <Image style={styles.image} source={profilePicture} />
       </View>
 
+
       <View style={styles.userPasswordContainer}>
         <Text style={styles.helloUser}>Hello, Romina!!</Text>
-        <Text style={styles.typePassword}>Type Your Password</Text>
+        <Text style={styles.typePassword}>Type your password</Text>
       </View>
+
       <View style={styles.dotContainer}>
         {dots.map((dot, index) => (
           <View
@@ -48,34 +61,38 @@ const Password = () => {
           />
         ))}
       </View>
-      <View style={styles.input}>
+
+
+      <View style={styles.inputContainer}>
         <Input
           placeholder="password"
           value={password}
           onChangeText={setPassword}
           secureTextInput
+          onSubmitEditing={() => {
+            router.push('/profile')
+          }}
         />
       </View>
 
-      <Text style={styles.forgotPassword}>Forgot your password?</Text>
 
-      <View style={styles.notYouContainer}>
-        <Text style={{ color: "#202020", fontWeight: "300", fontSize: 15 }}>
-          Not you?
-        </Text>
-        <Pressable
-          onPress={() => router.push("/login")}
-          style={styles.arrowContainer}
-        >
-          <FontAwesome name="long-arrow-right" color="#FFFFFF" size={24} />
-        </Pressable>
+      <Link style={styles.forgotPassword} href="/recoveryPassword">
+        <Text style={styles.forgotPasswordText}>Forgot your password?</Text>
+      </Link>
+
+      <View style={styles.footerContainer}>
+        <View style={styles.notYouContainer}>
+          <Text style={styles.notYouText}>Not you?</Text>
+          <Pressable
+            onPress={() => router.push("/login")}
+            style={styles.arrowContainer}
+          >
+            <FontAwesome name="long-arrow-right" color="#FFFFFF" size={18} />
+          </Pressable>
+        </View>
       </View>
-
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      ></KeyboardAvoidingView>
-    </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
@@ -83,103 +100,122 @@ export default Password;
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
     flex: 1,
+    backgroundColor: "#FFFFFF",
+  },
+  content: {
+    flexGrow: 1,
+    minHeight: "100%",
+    paddingBottom: 32,
   },
   figureContainer: {
-    position: "relative",
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
   },
   firstBubble: {
+    position: "absolute",
+    top: 0,
+    left: 0,
     zIndex: 1,
   },
   secondBubble: {
     position: "absolute",
+    top: 0,
+    left: 0,
+    zIndex: 0,
   },
   profileContainer: {
     width: 106,
     height: 106,
     backgroundColor: "white",
     borderRadius: 53,
+    alignSelf: "center",
+    marginTop: 130,
+    zIndex: 3,
     alignItems: "center",
     justifyContent: "center",
-    position: "absolute",
-    top: 150,
-    left: 135,
-    right: 100,
-    zIndex: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
   },
   image: {
-    width: 91,
-    height: 91,
-    borderRadius: 45,
+    width: 94,
+    height: 94,
+    borderRadius: 47,
   },
   userPasswordContainer: {
-    position: "absolute",
-    top: 280,
-    left: 86,
-    right: 100,
+    alignItems: "center",
+    marginTop: 50,
+    zIndex: 3,
   },
   helloUser: {
-    fontSize: 28,
+    fontSize: 26,
     fontWeight: "700",
     color: "#202020",
-    lineHeight: 36,
+    lineHeight: 34,
   },
   typePassword: {
-    left: 15,
-    top: 35,
-    fontSize: 19,
-    fontWeight: "300",
-    color: "#000000",
-    lineHeight: 35,
+    fontSize: 16,
+    fontWeight: "400",
+    color: "#555555",
+    marginTop: 6,
   },
   dotContainer: {
-    marginTop: 130,
+    marginTop: 25,
     alignItems: "center",
     flexDirection: "row",
     justifyContent: "center",
-    gap: 12,
+    gap: 10,
   },
   dot: {
-    height: 17,
-    width: 17,
-    borderRadius: 8,
-    backgroundColor: "blue",
-    marginBottom: 30,
-  },
-  input: {
-    alignItems: "center",
+    height: 14,
+    width: 14,
+    borderRadius: 7,
+    backgroundColor: "#004CFF",
   },
   inactiveDot: {
     backgroundColor: "#E4EBFA",
   },
-  arrowContainer: {
-    width: 30,
-    height: 30,
-    backgroundColor: "#004CFF",
-    borderRadius: 15,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  notYouContainer: {
-    width: 105,
-    height: 30,
-    flexDirection: "row",
-    gap: 15,
-    position: "absolute",
-    bottom: 20,
-    alignItems: "center",
-    marginVertical: "auto",
-    left: "50%",
-    transform: "translate(-50%)",
+  inputContainer: {
+    paddingHorizontal: 30,
+    marginTop: 20,
   },
   forgotPassword: {
-    width: 170,
-    height: 26,
-    marginHorizontal: "auto",
-    marginTop: 30,
+    alignSelf: "center",
+    marginTop: 15,
+  },
+  forgotPasswordText: {
+    fontSize: 14,
+    color: "#555555",
+    fontWeight: "400",
+  },
+  footerContainer: {
+    paddingHorizontal: 24,
+    marginTop: 48,
+    marginBottom: 8,
+    width:120,
+    alignSelf: "center",
+  },
+  notYouContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+  notYouText: {
+    color: "#202020",
+    fontWeight: "400",
     fontSize: 15,
-    lineHeight: 26,
-    fontWeight: "300",
+  },
+  arrowContainer: {
+    width: 32,
+    height: 32,
+    backgroundColor: "#004CFF",
+    borderRadius: 16,
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

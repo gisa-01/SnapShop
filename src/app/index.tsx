@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
-import { useRouter } from 'expo-router';
+import { useRouter, Link } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import Button from '@/components/Button';
@@ -39,6 +39,8 @@ const HomePage = () => {
           <FontAwesome name ='long-arrow-right' size={24} color={'white'}/>
         </Pressable>
       </View>
+
+      <Link href='/Onboarding'>Hello Card</Link>
     </View>
   )
 }
