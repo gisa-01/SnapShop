@@ -53,7 +53,7 @@ const Login = () => {
         <Button
           title="Next"
           backgroundColor={"#004CFF"}
-          onPress={() => router.push('/password')}
+          onPress={() => router.push('/home')}
         />
 
         <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
