@@ -3,7 +3,7 @@ import bubblepass2 from "@/assets/snapShopIcons/bubblepass2.png";
 import profilePicture from "@/assets/snapShopIcons/profilePicture.png";
 import Input from "@/components/Input";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { useRouter, Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useState } from "react";
 import {
   Image,

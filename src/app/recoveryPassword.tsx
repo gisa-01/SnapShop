@@ -12,7 +12,7 @@ const RecoveryPassword = () => {
       router.push("/smsRecovery");
     } 
     else if(selectedMethod === "email"){
-      router.push("/login");
+      router.push("/emailRecover");
     }
   };
   const handleCancel = () => {
@@ -35,7 +35,6 @@ const RecoveryPassword = () => {
       </View>
 
       <View style={styles.optionsContainer}>
-        {/* SMS Option */}
         <TouchableOpacity
           style={[
             styles.optionCard,
