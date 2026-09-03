@@ -4,7 +4,7 @@ import profilePicture from "@/assets/snapShopIcons/image.png";
 import RecentlyView from "@/assets/snapShopIcons/RecentlyView.png";
 import  StoryImage from "@/assets/snapShopIcons/Story.png";
 import { Ionicons, Feather, Octicons } from "@expo/vector-icons";
-import React from "react";
+import React, {useState} from "react";
 
 const RECENTLY_VIEWED = [
   { id: "1", image: RecentlyView },
@@ -20,7 +20,10 @@ const STORY = [
 
 ];
 
-const home = () => {
+const Home = () => {
+    const [activeTab, setActiveTab] = useState("home");
+    const [activeOrderTab, setActiveOrderTab] = useState("To Receive");
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView
@@ -85,11 +88,15 @@ const home = () => {
                 <Text style={styles.orderTapText}>To Pay</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity>
-                <View>
-                    <Text>TO Receive</Text>
-                </View>
+            <TouchableOpacity style={styles.orderTabActive}>
+                <View style={styles.greenBadgeDot}/>
+                    <Text style={[styles.orderTabText, styles.orderTabTextActive]}>TO Receive</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity style={styles.orderTap}>
+                <Text style={styles.orderTapText}>To Review</Text>
+            </TouchableOpacity>
+            
         </View>
 
             <Text style={styles.sectionTitle}>Stories</Text>
@@ -106,21 +113,37 @@ const home = () => {
                       source={item.image}
                       style={styles.storyImage} 
                     />
-                        <View>
-                            <Text>Live</Text>
-                        </View>
-                      <View style={styles.playButtonOverlay}>
-                        <Ionicons name="play" size={22} color="#FFFFFF" />
-                      </View>
+
                      </TouchableOpacity>
                 ))}
             </ScrollView>
             </ScrollView>
+            <View style={styles.bottomTabBar}>
+                <TouchableOpacity onPress={() => setActiveTab("home")}>
+                    <Feather name="home" size={24} color="#0052FF"/>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => setActiveTab("wishlist")}>
+                    <Feather name="heart" size={24} color="#0052FF"/>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => setActiveTab("orders")}>
+                    <Ionicons name="receipt-outline" size={24} color="#0052FF"/>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => setActiveTab("cart")}>
+                    <Feather name="shopping-bag" size={24} color="#0052FF"/>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => setActiveTab("profile")}>
+                    <Feather name="user" size={22} color="#0052FF"/>
+                </TouchableOpacity>
+            </View>
             </SafeAreaView>
   );
 };
 
-export default home;
+export default Home;
 
 const styles = StyleSheet.create({
   container: {
@@ -262,6 +285,33 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
 
+  orderTabActive: {
+    backgroundColor: "#EBF1FF",
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 20,
+  },
+
+  orderTabText: {
+    color: "#0052FF",
+    fontSize: 14,
+    fontWeight: "500",
+  },
+  
+  orderTabTextActive: {
+    fontWeight: "600",
+  },
+
+  greenBadgeDot: {
+    position: "absolute",
+    top: -2,
+    right: 2,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#22C55E",
+  },
+
   storiesList: {
 
   },
@@ -275,6 +325,26 @@ const styles = StyleSheet.create({
   },
 
   playButtonOverlay: {
-
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: [{ translateX: -16 }, { translateY: -16 }],
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    justifyContent: "center",
+    alignItems: "center",
   },
+
+  bottomTabBar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    height: 60,
+    backgroundColor: "#FFFFFF",
+    borderTopWidth: 1,
+    borderTopColor: "#F0F0F0",
+  },
+
 });
