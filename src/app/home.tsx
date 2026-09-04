@@ -1,8 +1,15 @@
-import {StyleSheet,Text, View, ScrollView, Image, TouchableOpacity,} from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import profilePicture from "@/assets/snapShopIcons/image.png";
 import RecentlyView from "@/assets/snapShopIcons/RecentlyView.png";
-import  StoryImage from "@/assets/snapShopIcons/Story.png";
+import StoryImage from "@/assets/snapShopIcons/Story.png";
 import { Ionicons, Feather, Octicons } from "@expo/vector-icons";
 import React, {useState} from "react";
 
@@ -17,7 +24,6 @@ const STORY = [
   { id: "1", image: StoryImage },
   { id: "2", image: StoryImage },
   { id: "3", image: StoryImage },
-
 ];
 
 const Home = () => {
@@ -73,20 +79,17 @@ const Home = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.recentList}
-            >
-        {RECENTLY_VIEWED.map((item) => (
-          <Image
-            key={item.id}
-            source={item.image}
-           />
-        ))}
+        >
+          {RECENTLY_VIEWED.map((item) => (
+            <Image key={item.id} source={item.image} />
+          ))}
         </ScrollView>
 
         <Text style={styles.sectionTitle}>My Orders</Text>
         <View style={styles.ordersRow}>
-            <TouchableOpacity style={styles.orderTap}>
-                <Text style={styles.orderTapText}>To Pay</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.orderTap}>
+            <Text style={styles.orderTapText}>To Pay</Text>
+          </TouchableOpacity>
 
             <TouchableOpacity style={styles.orderTabActive}>
                 <View style={styles.greenBadgeDot}/>
@@ -152,7 +155,7 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingHorizontal: 20,
+   marginHorizontal:10,
     paddingBottom: 20,
   },
 
@@ -268,8 +271,8 @@ const styles = StyleSheet.create({
 
   ordersRow: {
     flexDirection: "row",
-    gap: 12,
-    marginBottom: 24,
+    justifyContent: "space-between",
+    marginBottom: 10,
   },
 
   orderTap: {
@@ -284,6 +287,8 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
   },
+  
+  storiesList: {},
 
   orderTabActive: {
     backgroundColor: "#EBF1FF",
