@@ -70,7 +70,7 @@ const Password = () => {
           onChangeText={setPassword}
           secureTextInput
           onSubmitEditing={() => {
-            router.push('/profile')
+            router.push('/home')
           }}
         />
       </View>

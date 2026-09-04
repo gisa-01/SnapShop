@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, TextInput, View, TextStyle } from "react-native";
+import { Pressable, StyleSheet, TextInput, View, TextStyle, ViewStyle } from "react-native";
 import { useState } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
@@ -10,6 +10,7 @@ type InputProps = {
   secureTextInput?: boolean;
   style?: TextStyle;
   onSubmitEditing?: () => void;
+  viewStyle?: ViewStyle;
 };
 
 const Input = ({
@@ -19,13 +20,14 @@ const Input = ({
   keyboardType = "default",
   secureTextInput = false,
   style,
-  onSubmitEditing
+  onSubmitEditing,
+  viewStyle
 }: InputProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View style={[styles.inputContainer, isFocused && styles.inputFocused]}>
+    <View style={[styles.inputContainer, isFocused && styles.inputFocused, viewStyle]}>
       <TextInput
         placeholder={placeholder}
         placeholderTextColor="#D2D2D2"

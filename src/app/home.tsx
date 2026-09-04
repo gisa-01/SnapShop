@@ -1,9 +1,17 @@
-import {StyleSheet,Text, View, ScrollView, Image, TouchableOpacity,} from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import profilePicture from "@/assets/snapShopIcons/image.png";
 import RecentlyView from "@/assets/snapShopIcons/RecentlyView.png";
-import  StoryImage from "@/assets/snapShopIcons/Story.png";
+import StoryImage from "@/assets/snapShopIcons/Story.png";
 import { Ionicons, Feather, Octicons } from "@expo/vector-icons";
+import image from "@/assets/snapShopIcons/image2.png";
 import React from "react";
 
 const RECENTLY_VIEWED = [
@@ -17,7 +25,6 @@ const STORY = [
   { id: "1", image: StoryImage },
   { id: "2", image: StoryImage },
   { id: "3", image: StoryImage },
-
 ];
 
 const home = () => {
@@ -70,53 +77,48 @@ const home = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           style={styles.recentList}
-            >
-        {RECENTLY_VIEWED.map((item) => (
-          <Image
-            key={item.id}
-            source={item.image}
-           />
-        ))}
+        >
+          {RECENTLY_VIEWED.map((item) => (
+            <Image key={item.id} source={item.image} />
+          ))}
         </ScrollView>
 
         <Text style={styles.sectionTitle}>My Orders</Text>
         <View style={styles.ordersRow}>
-            <TouchableOpacity style={styles.orderTap}>
-                <Text style={styles.orderTapText}>To Pay</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.orderTap}>
+            <Text style={styles.orderTapText}>To Pay</Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity>
-                <View>
-                    <Text>TO Receive</Text>
-                </View>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.orderTap}>
+            <Text style={styles.orderTapText}>To Receive</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.orderTap}>
+            <Text style={styles.orderTapText}>To Review</Text>
+          </TouchableOpacity>
         </View>
 
-            <Text style={styles.sectionTitle}>Stories</Text>
-            <ScrollView 
-                horizontal showsHorizontalScrollIndicator={false}
-                style={styles.storiesList}>
-                {STORY.map((item) => (
-                    <TouchableOpacity 
-                       key={item.id} 
-                       style={styles.storyCard}
-                       activeOpacity={0.9}
-                    >
-                    <Image
-                      source={item.image}
-                      style={styles.storyImage} 
-                    />
-                        <View>
-                            <Text>Live</Text>
-                        </View>
-                      <View style={styles.playButtonOverlay}>
-                        <Ionicons name="play" size={22} color="#FFFFFF" />
-                      </View>
-                     </TouchableOpacity>
-                ))}
-            </ScrollView>
-            </ScrollView>
-            </SafeAreaView>
+        <Text style={styles.sectionTitle}>Stories</Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.storiesList}
+        >
+          {STORY.map((item) => (
+            <TouchableOpacity
+              key={item.id}
+              style={styles.storyCard}
+              activeOpacity={0.9}
+            >
+              <Image source={item.image} style={styles.storyImage} />
+              <View style={styles.playButtonOverlay}>
+                <Ionicons name="play" size={22} color="#FFFFFF" />
+              </View>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -129,7 +131,7 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-    paddingHorizontal: 20,
+   marginHorizontal:10,
     paddingBottom: 20,
   },
 
@@ -245,8 +247,8 @@ const styles = StyleSheet.create({
 
   ordersRow: {
     flexDirection: "row",
-    gap: 12,
-    marginBottom: 24,
+    justifyContent: "space-between",
+    marginBottom: 10,
   },
 
   orderTap: {
@@ -261,20 +263,12 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
   },
+  
+  storiesList: {},
 
-  storiesList: {
+  storyCard: {},
 
-  },
+  storyImage: {},
 
-  storyCard: {
-
-  },
-
-  storyImage: {
-
-  },
-
-  playButtonOverlay: {
-
-  },
+  playButtonOverlay: {},
 });

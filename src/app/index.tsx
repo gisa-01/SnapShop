@@ -40,7 +40,7 @@ const HomePage = () => {
         </Pressable>
       </View>
 
-      <Link href='/Onboarding'>Hello Card</Link>
+      <Link href='/Shop'>Shop</Link>
     </View>
   )
 }
