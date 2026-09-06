@@ -19,9 +19,7 @@ import NewItems from "@/components/NewItems";
 import SeeAll from "@/components/SeeAll";
 import FlashSale from "@/components/FlashSale";
 import Timer from "@/components/Timer";
-import Card from "@/components/Card";
-
-import Bunner from '@/assets/snapShopIcons/banner2.png'
+import banner from "@/assets/snapShopIcons/banner2.png";
 
 const Home = () => {
   const [search, setSearch] = useState("");
@@ -129,14 +127,30 @@ const Home = () => {
         <View style={styles.timerHeaderContainer}>
           <View style={styles.titleTimeContainer}>
             <Text style={styles.categoryName}>Flash Sale</Text>
-            <FontAwesome style={{marginLeft:'35%', color:'#004BFE'}} name="clock-o" size={24} />
+            <FontAwesome
+              style={{ marginLeft: "35%", color: "#004BFE" }}
+              name="clock-o"
+              size={24}
+            />
           </View>
           <Timer />
         </View>
-        <FlashSale />
+        <View style={styles.flashSale}>
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+        </View>
       </View>
+
       <View>
-        
+        <View style={styles.popular}>
+          <Text style={styles.mostPopular}>Most Popular</Text>
+          <SeeAll />
+        </View>
+        <NewItems />
       </View>
     </ScrollView>
   );
@@ -150,7 +164,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   contentContainer: {
-    paddingTop: 50, // Safe area padding placeholder
+    paddingTop: 50,
     paddingHorizontal: 30,
     paddingBottom: 40,
   },
@@ -242,29 +256,48 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     marginBottom: 15,
     flexDirection: "row",
-    justifyContent:'space-between',
-    alignItems:'center'
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   header: {
     justifyContent: "space-between",
   },
   titleTimeContainer: {
-    flexDirection:'row',
-    justifyContent:'space-between',
-    alignItems:'center'
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   discountImage: {
-    height:103,
-    width:99,
-    objectFit:'cover',
+    height: 103,
+    width: 99,
+    objectFit: "cover",
     elevation: 10,
-    padding:5,
+    padding: 5,
   },
-  bunnerContainer:{
-    width:335,
-    height:226,
-    borderRadius:0,
-    elevation:0
-
+  bunnerContainer: {
+    width: 335,
+    height: 226,
+    borderRadius: 0,
+    elevation: 0,
+  },
+  flashSale: {
+    flexDirection: "row",
+    gap: 15,
+    flexWrap: "wrap",
+  },
+  mostPopular: {
+    marginTop: 20,
+    fontSize: 21,
+    color: "#202020",
+    fontWeight: 700,
+    lineHeight: 30,
+    marginBottom: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  popular: {
+    justifyContent:'space-between',
+    flexDirection:'row'
   }
 });

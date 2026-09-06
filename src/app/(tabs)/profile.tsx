@@ -91,7 +91,7 @@ const Profile = () => {
           <TouchableOpacity style={styles.orderTabActive}>
             <View style={styles.greenBadgeDot} />
             <Text style={[styles.orderTabText, styles.orderTabTextActive]}>
-              TO Receive
+              To Receive
             </Text>
           </TouchableOpacity>
 
