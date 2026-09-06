@@ -13,6 +13,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import RoundedCard from "@/components/RoundedCard";
 
 const RECENTLY_VIEWED = [
   { id: "1", image: RecentlyView },
@@ -78,15 +79,8 @@ const Profile = () => {
         </View>
 
         <Text style={styles.sectionTitle}>Recently Viewed</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.recentList}
-        >
-          {RECENTLY_VIEWED.map((item) => (
-            <Image key={item.id} source={item.image} />
-          ))}
-        </ScrollView>
+        
+        <RoundedCard />
 
         <Text style={styles.sectionTitle}>My Orders</Text>
         <View style={styles.ordersRow}>
