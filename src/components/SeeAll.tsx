@@ -20,7 +20,9 @@ export default SeeAll
 const styles = StyleSheet.create({
   container: {
     flexDirection:'row',
-    gap: 10
+    gap: 10,
+    justifyContent: 'center',
+    alignItems:'center'
   },
   arrowContainer: {
     backgroundColor:'#004CFF',

@@ -1,17 +1,18 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import profilePicture from "@/assets/snapShopIcons/image.png";
 import RecentlyView from "@/assets/snapShopIcons/RecentlyView.png";
 import StoryImage from "@/assets/snapShopIcons/Story.png";
-import { Ionicons, Feather, Octicons } from "@expo/vector-icons";
-import React, {useState} from "react";
+import { Feather, Ionicons, Octicons } from "@expo/vector-icons";
+import { useState } from "react";
+import { useRoute, useRouter } from "expo-router";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const RECENTLY_VIEWED = [
   { id: "1", image: RecentlyView },
@@ -26,9 +27,11 @@ const STORY = [
   { id: "3", image: StoryImage },
 ];
 
-const Home = () => {
-    const [activeTab, setActiveTab] = useState("home");
-    const [activeOrderTab, setActiveOrderTab] = useState("To Receive");
+const Profile = () => {
+  const [activeTab, setActiveTab] = useState("home");
+  const [activeOrderTab, setActiveOrderTab] = useState("To Receive");
+
+  const router = useRouter();
 
   return (
     <SafeAreaView style={styles.container}>
@@ -91,62 +94,41 @@ const Home = () => {
             <Text style={styles.orderTapText}>To Pay</Text>
           </TouchableOpacity>
 
-            <TouchableOpacity style={styles.orderTabActive}>
-                <View style={styles.greenBadgeDot}/>
-                    <Text style={[styles.orderTabText, styles.orderTabTextActive]}>TO Receive</Text>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.orderTabActive}>
+            <View style={styles.greenBadgeDot} />
+            <Text style={[styles.orderTabText, styles.orderTabTextActive]}>
+              TO Receive
+            </Text>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.orderTap}>
-                <Text style={styles.orderTapText}>To Review</Text>
-            </TouchableOpacity>
-            
+          <TouchableOpacity style={styles.orderTap}>
+            <Text style={styles.orderTapText}>To Review</Text>
+          </TouchableOpacity>
         </View>
 
-            <Text style={styles.sectionTitle}>Stories</Text>
-            <ScrollView 
-                horizontal showsHorizontalScrollIndicator={false}
-                style={styles.storiesList}>
-                {STORY.map((item) => (
-                    <TouchableOpacity 
-                       key={item.id} 
-                       style={styles.storyCard}
-                       activeOpacity={0.9}
-                    >
-                    <Image
-                      source={item.image}
-                      style={styles.storyImage} 
-                    />
+        <Text style={styles.sectionTitle}>Stories</Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.storiesList}
+        >
+          {STORY.map((item) => (
+            <TouchableOpacity
+              key={item.id}
+              style={styles.storyCard}
+              activeOpacity={0.9}
+            >
+              <Image source={item.image} style={styles.storyImage} />
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
+      </ScrollView>
 
-                     </TouchableOpacity>
-                ))}
-            </ScrollView>
-            </ScrollView>
-            <View style={styles.bottomTabBar}>
-                <TouchableOpacity onPress={() => setActiveTab("home")}>
-                    <Feather name="home" size={24} color="#0052FF"/>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => setActiveTab("wishlist")}>
-                    <Feather name="heart" size={24} color="#0052FF"/>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => setActiveTab("orders")}>
-                    <Ionicons name="receipt-outline" size={24} color="#0052FF"/>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => setActiveTab("cart")}>
-                    <Feather name="shopping-bag" size={24} color="#0052FF"/>
-                </TouchableOpacity>
-
-                <TouchableOpacity onPress={() => setActiveTab("profile")}>
-                    <Feather name="user" size={22} color="#0052FF"/>
-                </TouchableOpacity>
-            </View>
-            </SafeAreaView>
+    </SafeAreaView>
   );
 };
 
-export default Home;
+export default Profile;
 
 const styles = StyleSheet.create({
   container: {
@@ -155,7 +137,7 @@ const styles = StyleSheet.create({
   },
 
   scrollContent: {
-   marginHorizontal:10,
+    marginHorizontal: 10,
     paddingBottom: 20,
   },
 
@@ -287,7 +269,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
   },
-  
+
   storiesList: {},
 
   orderTabActive: {
@@ -302,7 +284,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "500",
   },
-  
+
   orderTabTextActive: {
     fontWeight: "600",
   },
@@ -317,17 +299,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#22C55E",
   },
 
-  storiesList: {
+  storyCard: {},
 
-  },
-
-  storyCard: {
-
-  },
-
-  storyImage: {
-
-  },
+  storyImage: {},
 
   playButtonOverlay: {
     position: "absolute",
@@ -351,5 +325,4 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#F0F0F0",
   },
-
 });

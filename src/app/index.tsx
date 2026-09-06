@@ -40,7 +40,7 @@ const HomePage = () => {
         </Pressable>
       </View>
 
-      <Link href='/Shop'>Shop</Link>
+      <Link href='/Home'>Shop</Link>
     </View>
   )
 }
