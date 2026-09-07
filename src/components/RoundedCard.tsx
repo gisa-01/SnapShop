@@ -35,7 +35,9 @@ const RoundedCard = () => {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.imageContainer}>
       {storyData.map((story) => (
-        <Image style={styles.image} id={story.id} source={story.image} />
+        <View id={story.id} style={styles.storyContainer}>
+          <Image style={styles.image} source={story.image} />
+        </View>
       ))}
     </ScrollView>
   )
@@ -53,10 +55,13 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     flexDirection: 'row',
-    marginRight: 30,
+    marginRight: 15,
     borderWidth: 1,
     borderColor:'lightgrey',
-    objectFit: 'cover'
+    objectFit: 'cover',
+    
+  },
+  storyContainer: {
     
   }
 })

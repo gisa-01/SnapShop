@@ -15,8 +15,13 @@ import Input from "@/components/Input";
 import { bannerData } from "@/data/heroBannerData";
 import Categories from "@/components/Categories";
 import RoundedCard from "@/components/RoundedCard";
+import NewItems from "@/components/NewItems";
+import SeeAll from "@/components/SeeAll";
+import FlashSale from "@/components/FlashSale";
+import Timer from "@/components/Timer";
+import banner from "@/assets/snapShopIcons/banner2.png";
 
-const Shop = () => {
+const Home = () => {
   const [search, setSearch] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const { width } = useWindowDimensions();
@@ -34,15 +39,24 @@ const Shop = () => {
     }
   };
 
-  const handleScroll = (event: { nativeEvent: { layoutMeasurement: { width: any; }; contentOffset: { x: number; }; }; }) => {
+  const handleScroll = (event: {
+    nativeEvent: {
+      layoutMeasurement: { width: any };
+      contentOffset: { x: number };
+    };
+  }) => {
     const slideSize = event.nativeEvent.layoutMeasurement.width;
-    const currentIndex = Math.round(event.nativeEvent.contentOffset.x / slideSize);
+    const currentIndex = Math.round(
+      event.nativeEvent.contentOffset.x / slideSize,
+    );
     setActiveIndex(currentIndex);
   };
 
   return (
-    <ScrollView style={styles.screen} contentContainerStyle={styles.contentContainer}>
- 
+    <ScrollView
+      style={styles.screen}
+      contentContainerStyle={styles.contentContainer}
+    >
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>Shop</Text>
         <View style={styles.inputContainer}>
@@ -77,7 +91,6 @@ const Shop = () => {
           ))}
         </ScrollView>
 
-
         <View style={styles.paginationContainer}>
           {bannerData.map((item, index) => (
             <View
@@ -91,15 +104,59 @@ const Shop = () => {
         </View>
       </View>
       <Categories />
-      <View style={styles.topProductsContainer}>
-        <Text style={styles.topProducts}>Top products</Text>
+      <View style={styles.categoryContainer}>
+        <Text style={styles.categoryName}>Top products</Text>
         <RoundedCard />
+      </View>
+
+      <View>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Text style={styles.categoryName}>New Items</Text>
+          <SeeAll />
+        </View>
+        <NewItems />
+      </View>
+
+      <View style={styles.header}>
+        <View style={styles.timerHeaderContainer}>
+          <View style={styles.titleTimeContainer}>
+            <Text style={styles.categoryName}>Flash Sale</Text>
+            <FontAwesome
+              style={{ marginLeft: "35%", color: "#004BFE" }}
+              name="clock-o"
+              size={24}
+            />
+          </View>
+          <Timer />
+        </View>
+        <View style={styles.flashSale}>
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+          <FlashSale image={banner} rating={"-20%"} />
+        </View>
+      </View>
+
+      <View>
+        <View style={styles.popular}>
+          <Text style={styles.mostPopular}>Most Popular</Text>
+          <SeeAll />
+        </View>
+        <NewItems />
       </View>
     </ScrollView>
   );
 };
 
-export default Shop;
+export default Home;
 
 const styles = StyleSheet.create({
   screen: {
@@ -107,8 +164,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
   },
   contentContainer: {
-    paddingTop: 50, // Safe area padding placeholder
-   paddingHorizontal: 30,
+    paddingTop: 50,
+    paddingHorizontal: 30,
     paddingBottom: 40,
   },
   headerContainer: {
@@ -154,12 +211,9 @@ const styles = StyleSheet.create({
   heroBannerWrapper: {
     width: "100%",
     alignSelf: "center",
-    overflow: 'hidden',
-    
+    overflow: "hidden",
   },
-  bannerScrollContent: {
-
-  },
+  bannerScrollContent: {},
   imageBanner: {
     width: 335,
     height: 130,
@@ -185,14 +239,65 @@ const styles = StyleSheet.create({
     width: 8,
     backgroundColor: "#D9D9D9",
   },
-  topProductsContainer: {
+  categoryContainer: {
     marginTop: 30,
   },
-  topProducts: {
-    fontSize:21,
-    color:'#202020',
-    fontWeight:700,
-    lineHeight:30,
-    
+  categoryName: {
+    fontSize: 21,
+    color: "#202020",
+    fontWeight: 700,
+    lineHeight: 30,
+    marginBottom: 15,
+  },
+  timerHeaderContainer: {
+    fontSize: 21,
+    color: "#202020",
+    fontWeight: 700,
+    lineHeight: 30,
+    marginBottom: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  header: {
+    justifyContent: "space-between",
+  },
+  titleTimeContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  discountImage: {
+    height: 103,
+    width: 99,
+    objectFit: "cover",
+    elevation: 10,
+    padding: 5,
+  },
+  bunnerContainer: {
+    width: 335,
+    height: 226,
+    borderRadius: 0,
+    elevation: 0,
+  },
+  flashSale: {
+    flexDirection: "row",
+    gap: 15,
+    flexWrap: "wrap",
+  },
+  mostPopular: {
+    marginTop: 20,
+    fontSize: 21,
+    color: "#202020",
+    fontWeight: 700,
+    lineHeight: 30,
+    marginBottom: 15,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  popular: {
+    justifyContent:'space-between',
+    flexDirection:'row'
   }
 });

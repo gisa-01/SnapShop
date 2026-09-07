@@ -1,17 +1,23 @@
+import loginBubble1 from "@/assets/snapShopIcons/loginbubble1.png";
+import loginBubble2 from "@/assets/snapShopIcons/loginbubble2.png";
+import loginBubble3 from "@/assets/snapShopIcons/loginbubble3.png";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { router } from "expo-router";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, Image, KeyboardAvoidingView, Platform, ScrollView } from "react-native";
-import loginBubble1 from "@/assets/snapShopIcons/loginbubble1.png";
-import loginBubble2 from "@/assets/snapShopIcons/loginbubble2.png";
-import loginBubble3 from "@/assets/snapShopIcons/loginbubble3.png";
-
+import {
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 const Login = () => {
   const [email, setEmail] = useState("");
-
- 
 
   const handleCancel = () => {
     console.log("Cancel Pressed");
@@ -27,47 +33,46 @@ const Login = () => {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
+        <View pointerEvents="none" style={styles.iconsContainer}>
+          <View style={styles.image1}>
+            <Image source={loginBubble1} />
+          </View>
 
-      <View pointerEvents="none" style={styles.iconsContainer}>
-        <View style={styles.image1}>
-          <Image source={loginBubble1} />
+          <View style={styles.image2}>
+            <Image source={loginBubble2} />
+          </View>
+          <View style={styles.image3}>
+            <Image source={loginBubble3} />
+          </View>
         </View>
 
-        <View style={styles.image2}>
-          <Image source={loginBubble2} />
+        <View>
+          <Text style={styles.title}>Login</Text>
+          <Text style={styles.subtitle}>
+            Good to see you back! <Text style={styles.heart}>❤️</Text>
+          </Text>
         </View>
-        <View style={styles.image3}>
-          <Image source={loginBubble3}/>
+
+        <View style={styles.input}>
+          <Input
+            placeholder="Email"
+            style={styles.inputSpace}
+            value={email}
+            onChangeText={setEmail}
+          />
         </View>
-      </View>
 
-      <View>
-        <Text style={styles.title}>Login</Text>
-        <Text style={styles.subtitle}>
-          Good to see you back! <Text style={styles.heart}>❤️</Text>
-        </Text>
-      </View>
+        <View style={styles.button}>
+          <Button
+            title="Next"
+            backgroundColor={"#004CFF"}
+            onPress={() => router.push("/password")}
+          />
 
-      <View style={styles.input}>
-        <Input
-          placeholder="Email"
-          style={styles.inputSpace}
-          value={email}
-          onChangeText={setEmail}
-        />
-      </View>
-
-      <View style={styles.button}>
-        <Button
-          title="Next"
-          backgroundColor={"#004CFF"}
-          onPress={() => router.push('/home')}
-        />
-
-        <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
-          <Text style={styles.cancelText}>Cancel</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity style={styles.cancelButton} onPress={handleCancel}>
+            <Text style={styles.cancelText}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </KeyboardAvoidingView>
   );
@@ -85,21 +90,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingBottom: 32,
   },
-  iconsContainer:{
-    position:'relative',
-    marginLeft:-20
-
+  iconsContainer: {
+    position: "relative",
+    marginLeft: -20,
   },
   image1: {
-    zIndex: 1
+    zIndex: 1,
   },
   image2: {
-    position: 'absolute'
+    position: "absolute",
   },
   image3: {
-    position:'absolute',
-    right:-20,
-    top: 239
+    position: "absolute",
+    right: -20,
+    top: 239,
   },
 
   title: {
@@ -124,10 +128,9 @@ const styles = StyleSheet.create({
   input: {
     marginTop: 20,
     width: "100%",
-  
   },
   inputSpace: {
-    width:'100%',
+    width: "100%",
   },
 
   button: {
