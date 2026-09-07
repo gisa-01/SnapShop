@@ -14,19 +14,10 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import RoundedCard from "@/components/RoundedCard";
-
-const RECENTLY_VIEWED = [
-  { id: "1", image: RecentlyView },
-  { id: "2", image: RecentlyView },
-  { id: "3", image: RecentlyView },
-  { id: "4", image: RecentlyView },
-];
-
-const STORY = [
-  { id: "1", image: StoryImage },
-  { id: "2", image: StoryImage },
-  { id: "3", image: StoryImage },
-];
+import StoryCard from "@/components/StoryCard";
+import NewItems from "@/components/NewItems";
+import SeeAll from "@/components/SeeAll";
+import MostPopular from "@/components/MostPopular";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -79,7 +70,7 @@ const Profile = () => {
         </View>
 
         <Text style={styles.sectionTitle}>Recently Viewed</Text>
-        
+
         <RoundedCard />
 
         <Text style={styles.sectionTitle}>My Orders</Text>
@@ -100,24 +91,25 @@ const Profile = () => {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.sectionTitle}>Stories</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.storiesList}
-        >
-          {STORY.map((item) => (
-            <TouchableOpacity
-              key={item.id}
-              style={styles.storyCard}
-              activeOpacity={0.9}
-            >
-              <Image source={item.image} style={styles.storyImage} />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </ScrollView>
+        <View>
+          <Text style={styles.sectionTitle}>Stories</Text>
+          <StoryCard />
+        </View>
 
+        <View>
+          <View style={styles.newItems}>
+            <Text style={styles.categoryName}>New Items</Text>
+            <SeeAll />
+          </View>
+          <NewItems />
+        </View>
+
+         <View style={styles.newItems}>
+            <Text style={styles.categoryName}>Most Popular</Text>
+            <SeeAll />
+          </View>
+          <MostPopular />
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -318,5 +310,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderTopWidth: 1,
     borderTopColor: "#F0F0F0",
+  },
+  newItems: {
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  categoryName: {
+    fontSize: 21,
+    color: "#202020",
+    fontWeight: 700,
+    lineHeight: 30,
+    marginBottom: 15,
+    
   },
 });
