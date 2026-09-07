@@ -52,7 +52,8 @@ export default MostPopular;
 
 const styles = StyleSheet.create({
  scrollContainer: {
-    paddingHorizontal: 10,
+
+    marginBottom:20
   },
   cardContainer: {
     width: 150,
@@ -60,7 +61,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 8,
     marginRight: 12,
-    // Add subtle shadow for iOS and Android
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,

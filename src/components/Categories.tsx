@@ -28,14 +28,14 @@ export default Categories;
 
 const styles = StyleSheet.create({
   categoriesContainer: {
-    width: 335,
+    paddingHorizontal: 10,
     height: 755,
     marginTop: 10,
   },
   categoriesHeader: {
     flexDirection: "row",
-    justifyContent: "space-between",
     marginBottom: 20,
+    justifyContent:'space-between'
   },
   category: {
     color: "#202020",
