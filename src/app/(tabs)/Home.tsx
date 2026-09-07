@@ -20,11 +20,15 @@ import SeeAll from "@/components/SeeAll";
 import FlashSale from "@/components/FlashSale";
 import Timer from "@/components/Timer";
 import banner from "@/assets/snapShopIcons/banner2.png";
+import MostPopular from "@/components/MostPopular";
+import JustForYou from "@/components/JustForYou";
+import { JustForYouData } from "@/data/justForYou";
 
 const Home = () => {
   const [search, setSearch] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
   const { width } = useWindowDimensions();
+  const bannerWidth = width - 20;
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -76,17 +80,17 @@ const Home = () => {
       <View style={styles.heroBannerWrapper}>
         <ScrollView
           horizontal
-          showsHorizontalScrollIndicator={false}
           pagingEnabled
+          showsHorizontalScrollIndicator={false}
           onScroll={handleScroll}
           scrollEventThrottle={16}
-          contentContainerStyle={styles.bannerScrollContent}
         >
           {bannerData.map((item) => (
             <Image
               key={item.id}
               source={item.image}
-              style={styles.imageBanner}
+              style={[styles.imageBanner, { width: bannerWidth }]}
+              resizeMode="cover"
             />
           ))}
         </ScrollView>
@@ -146,11 +150,27 @@ const Home = () => {
       </View>
 
       <View>
-        <View style={styles.popular}>
-          <Text style={styles.mostPopular}>Most Popular</Text>
+        <View style={styles.newItems}>
+          <Text style={styles.categoryName}>Most Popular</Text>
           <SeeAll />
         </View>
-        <NewItems />
+        <MostPopular />
+      </View>
+      
+      <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+        <Text style={styles.categoryName}>Just For You</Text>
+        <SeeAll />
+      </View>
+      <View style={styles.justForYouContainer}>
+        {JustForYouData.map((item) => (
+          <JustForYou
+            key={item.id}
+            id={item.id}
+            image={item.image}
+            description={item.discription}
+            price={item.price}
+          />
+        ))}
       </View>
     </ScrollView>
   );
@@ -284,6 +304,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 15,
     flexWrap: "wrap",
+    marginBottom: 20,
   },
   mostPopular: {
     marginTop: 20,
@@ -297,7 +318,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   popular: {
-    justifyContent:'space-between',
-    flexDirection:'row'
-  }
+    justifyContent: "space-between",
+    flexDirection: "row",
+  },
+  newItems: {
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  justForYouContainer: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    gap: 20,
+  },
 });
