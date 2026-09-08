@@ -1,7 +1,7 @@
 import profilePicture from "@/assets/snapShopIcons/image.png";
 import RecentlyView from "@/assets/snapShopIcons/RecentlyView.png";
 import StoryImage from "@/assets/snapShopIcons/Story.png";
-import { Feather, Ionicons, Octicons } from "@expo/vector-icons";
+import { Feather, FontAwesome, Ionicons, Octicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { useRoute, useRouter } from "expo-router";
 import {
@@ -14,19 +14,15 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import RoundedCard from "@/components/RoundedCard";
-
-const RECENTLY_VIEWED = [
-  { id: "1", image: RecentlyView },
-  { id: "2", image: RecentlyView },
-  { id: "3", image: RecentlyView },
-  { id: "4", image: RecentlyView },
-];
-
-const STORY = [
-  { id: "1", image: StoryImage },
-  { id: "2", image: StoryImage },
-  { id: "3", image: StoryImage },
-];
+import StoryCard from "@/components/StoryCard";
+import NewItems from "@/components/NewItems";
+import SeeAll from "@/components/SeeAll";
+import MostPopular from "@/components/MostPopular";
+import Categories from "@/components/Categories";
+import FlashSale from "@/components/FlashSale";
+import { FlashSaleData } from "@/data/flashSale";
+import JustForYou from "@/components/JustForYou";
+import { JustForYouData } from "@/data/justForYou";
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState("home");
@@ -79,7 +75,7 @@ const Profile = () => {
         </View>
 
         <Text style={styles.sectionTitle}>Recently Viewed</Text>
-        
+
         <RoundedCard />
 
         <Text style={styles.sectionTitle}>My Orders</Text>
@@ -100,24 +96,69 @@ const Profile = () => {
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.sectionTitle}>Stories</Text>
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.storiesList}
-        >
-          {STORY.map((item) => (
-            <TouchableOpacity
-              key={item.id}
-              style={styles.storyCard}
-              activeOpacity={0.9}
-            >
-              <Image source={item.image} style={styles.storyImage} />
-            </TouchableOpacity>
-          ))}
-        </ScrollView>
-      </ScrollView>
+        <View>
+          <Text style={styles.sectionTitle}>Stories</Text>
+          <StoryCard />
+        </View>
 
+        <View>
+          <View style={styles.newItems}>
+            <Text style={styles.categoryName}>New Items</Text>
+            <SeeAll />
+          </View>
+          <NewItems />
+        </View>
+
+        <View style={styles.newItems}>
+          <Text style={styles.categoryName}>Most Popular</Text>
+          <SeeAll />
+        </View>
+        <MostPopular />
+
+        <Categories />
+        <View style={styles.flashContainer}>
+          <View style={styles.newItems}>
+            <Text style={styles.categoryName}>Flash Sale</Text>
+            <SeeAll />
+          </View>
+          <View style={styles.flashSaleContainer}>
+            {FlashSaleData.map((item) => (
+              <FlashSale
+                key={item.id}
+                image={item.image}
+                rating={item.discount}
+              />
+            ))}
+          </View>
+        </View>
+
+        <View style={styles.flashContainer}>
+          <View style={styles.newItems}>
+            <Text style={styles.categoryName}>Top Products</Text>
+            <SeeAll />
+          </View>
+          <RoundedCard />
+        </View>
+
+        <View style={styles.flashContainer}>
+          <View>
+            <Text style={styles.categoryName}>Just For You <FontAwesome 
+              name="star" color={'#004CFF'}/>
+            </Text>
+          </View>
+          <View style={styles.justForYouContainer}>
+            {JustForYouData.map((item) => (
+              <JustForYou
+              key={item.id}
+                id={item.id} 
+                image={item.image}
+                description={item.discription}
+                price={item.price}
+              />
+            ))}
+          </View>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -319,4 +360,30 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: "#F0F0F0",
   },
+  newItems: {
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  categoryName: {
+    fontSize: 21,
+    color: "#202020",
+    fontWeight: 700,
+    lineHeight: 30,
+    marginBottom: 15,
+  },
+  flashContainer: {
+    marginTop: 20,
+    paddingHorizontal: 10
+  },
+  flashSaleContainer: {
+    flexWrap: "wrap",
+    flexDirection: "row",
+    gap: 10,
+  },
+  justForYouContainer:{
+    flexWrap:'wrap',
+    flexDirection:'row',
+    gap:20
+  }
 });
