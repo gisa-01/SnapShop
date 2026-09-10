@@ -35,7 +35,7 @@ const RoundedCard = () => {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.imageContainer}>
       {storyData.map((story) => (
-        <View id={story.id} style={styles.storyContainer}>
+        <View key={story.id} id={story.id} style={styles.storyContainer}>
           <Image style={styles.image} source={story.image} />
         </View>
       ))}
