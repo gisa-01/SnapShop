@@ -1,55 +1,64 @@
-import { StyleSheet, Text, View, TouchableOpacity,Image, } from 'react-native';
-import { Feather } from '@expo/vector-icons';
-import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Image, ImageSourcePropType } from "react-native";
+import { Feather } from "@expo/vector-icons";
 
-const WishlistCard = () => {
+type CardProps = {
+  image: ImageSourcePropType;
+  description: string;
+  oldPrice: string;
+  price: string;
+  color: string;
+  size: string;
+
+};
+
+const WishlistCard = ({ image, description, oldPrice, price, color, size }: CardProps) => {
   return (
     <View style={styles.card}>
-              <View style={styles.imageContainer}>
-                <Image
-                  source={require("@/assets/snapShopIcons/image1.png")}
-                  style={styles.imageContainer}
-                />
-                <TouchableOpacity style={styles.trashBtn} activeOpacity={0.7}>
-                  <Feather name="trash-2" size={16} color="#FF5A79" />
-                </TouchableOpacity>
-              </View>
-    
-              <View style={styles.cardContent}>
-                <Text style={styles.itemTitle} numberOfLines={2}>
-                  Lorem ipsum dolor sit amet consectetur.
-                </Text>
-    
-                <View style={styles.priceRow}>
-                  <Text style={styles.oldPrice}>$17,00</Text>
-                  <Text style={styles.price}>$12,00</Text>
-                </View>
-    
-                <View style={styles.bottomRow}>
-                  <View style={styles.chipRow}>
-                    <View style={styles.chip}>
-                      <Text style={styles.chipText}>Pink</Text>
-                    </View>
-                    <View style={styles.chip}>
-                      <Text style={styles.chipText}>M</Text>
-                    </View>
-                  </View>
-                  <TouchableOpacity style={styles.cartBtn} activeOpacity={0.7}>
-                    <Feather name="shopping-bag" size={24} color="#0052FF" />
-                    <View style={styles.plusOverlay}>
-                      <Feather name="plus" size={10} color="#0052FF" />
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              </View>
-  )
-}
+      <View style={styles.imageContainer}>
+        <Image
+          source={image}
+          style={styles.imageContainer}
+        />
+        <TouchableOpacity style={styles.trashBtn} activeOpacity={0.7}>
+          <Feather name="trash-2" size={16} color="#FF5A79" />
+        </TouchableOpacity>
+      </View>
 
-export default WishlistCard
+      <View style={styles.cardContent}>
+        <Text style={styles.itemTitle} numberOfLines={2}>
+          {description}
+        </Text>
+
+        <View style={styles.priceRow}>
+          <Text style={styles.oldPrice}>{oldPrice}</Text>
+          <Text style={styles.price}>{price}</Text>
+        </View>
+
+        <View style={styles.bottomRow}>
+          <View style={styles.chipRow}>
+            <View style={styles.chip}>
+              <Text style={styles.chipText}>{color}</Text>
+            </View>
+            <View style={styles.chip}>
+              <Text style={styles.chipText}>{size}</Text>
+            </View>
+          </View>
+          <TouchableOpacity style={styles.cartBtn} activeOpacity={0.7}>
+            <Feather name="shopping-bag" size={24} color="#0052FF" />
+            <View style={styles.plusOverlay}>
+              <Feather name="plus" size={10} color="#0052FF" />
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
+  );
+};
+
+export default WishlistCard;
 
 const styles = StyleSheet.create({
-    card: {
+  card: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#FFFFFF",
@@ -141,4 +150,4 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderRadius: 6,
   },
-})
+});
