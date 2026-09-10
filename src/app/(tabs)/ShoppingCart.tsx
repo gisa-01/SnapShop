@@ -5,8 +5,9 @@ import { CartComponentData } from "@/data/cartComponentData";
 
 const ShoppingCart = () => {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.headerTextContainer}>
+    <View style={styles.container}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.headerTextContainer}>
         <Text style={styles.cartText}>Cart</Text>
         <View style={styles.cartTextContainer}>
           <Text style={styles.cartNumber}>2</Text>
@@ -41,6 +42,7 @@ const ShoppingCart = () => {
           ))}
         </View>
       </View>
+      </ScrollView>
       <View style={styles.totalContainer}>
         <View style={styles.totalCheckout}>
           <View style={{flexDirection:'row', gap:5, alignItems:'center'}}>
@@ -52,7 +54,7 @@ const ShoppingCart = () => {
           </Pressable>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 
@@ -125,7 +127,6 @@ const styles = StyleSheet.create({
     marginVertical: 25,
   },
   totalContainer: {
-    marginBottom: 20,
     flexDirection: "row",
     gap: 10,
     alignItems: "center",
