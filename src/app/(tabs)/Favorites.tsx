@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import Wishlist from '@/components/Wishlist'
 
 const Favorites = () => {
   return (
-    <View>
-      <Text>Favorites</Text>
-    </View>
+    <ScrollView>
+      <Wishlist />
+    </ScrollView>
   )
 }
 
