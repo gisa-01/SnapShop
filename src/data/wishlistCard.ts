@@ -12,7 +12,7 @@ export const WhishlistCardData = [
     id: "2",
     image: require("../../assets/snapShopIcons/flashsale2.png"),
     description: "Lorem ipsum dolor sit amet consecteur",
-    color: "White",
+    color: "Black",
     oldPrice:'$15,00',
     size: "M",
     price: "$17,00",

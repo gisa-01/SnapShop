@@ -46,13 +46,13 @@ const CartComponent = ({
         <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems:'center'}}>
           <Text style={styles.price}>{price}</Text>
           <View style={{ flexDirection: "row", gap: 20, alignItems: "center" }}>
-            <Pressable onPress={() => setCart(cart - 1)}>
+            <Pressable onPress={() => setCart(cart + 1)}>
               <FontAwesome name="plus-circle" size={30} color={"#004BFE"} />
             </Pressable>
             <View style={styles.cartTextContainer}>
               <Text style={styles.cartText}>{cart}</Text>
             </View>
-            <Pressable onPress={() => setCart(cart + 1)}>
+            <Pressable onPress={() => setCart(cart - 1)}>
               <FontAwesome name="minus-circle" size={30} color={"#004BFE"} />
             </Pressable>
           </View>
