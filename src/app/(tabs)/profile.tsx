@@ -384,6 +384,6 @@ const styles = StyleSheet.create({
   justForYouContainer:{
     flexWrap:'wrap',
     flexDirection:'row',
-    gap:20
+    gap: 5
   }
 });

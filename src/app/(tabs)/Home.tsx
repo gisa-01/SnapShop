@@ -301,10 +301,13 @@ const styles = StyleSheet.create({
     elevation: 0,
   },
   flashSale: {
-    flexDirection: "row",
-    columnGap: 10,
-    flexWrap: "wrap",
-    marginBottom: 20,
+  flexDirection:'row',
+   flexWrap:'wrap',
+   marginHorizontal:'auto',
+   width:'100%',
+   justifyContent:'space-between',
+   paddingHorizontal: 10
+   
   },
   mostPopular: {
     marginTop: 20,

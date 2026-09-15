@@ -22,11 +22,12 @@ export default FlashSale
 
 const styles = StyleSheet.create({
   container: {
-    width: 155,
-    height:155,
+    width: 99,
+    height:103,
     backgroundColor:'#FFFFFF',
     overflow:'hidden',
     borderRadius: 14,
+    marginBottom: 10
   },
   image:{
     width:'100%',
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   ratingContainer: {
-    minWidth:39,
+    
     backgroundColor:'#FF2D55',
     position:'absolute',
     right:8,
