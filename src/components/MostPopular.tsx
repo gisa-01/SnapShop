@@ -56,22 +56,15 @@ const styles = StyleSheet.create({
     marginBottom:20
   },
   cardContainer: {
-    width: 150,
+    width: 155,
     backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 8,
-    marginRight: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
-    alignItems: 'center',
+    marginRight: 10,
+    marginBottom: 20,
   },
   imageContainer: {
     width: '100%',
-    height: 160,
-    borderRadius: 12,
+    height: 155,
+    borderRadius: 14,
     overflow: 'hidden',
   },
   image: {
@@ -83,17 +76,16 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    marginTop: 8,
-    paddingHorizontal: 4,
+    marginTop: 6,
   },
   text: {
     fontSize: 15,
-    fontWeight: '700',
+    fontWeight: '800',
     color: '#000000',
   },
   description: {
     fontWeight: '500',
-    fontSize: 14,
+    fontSize: 12,
     color: '#333333',
   },
 });

@@ -1,4 +1,5 @@
-import { ImageSourcePropType, StyleSheet, Text, View, Image } from 'react-native'
+import { ImageSourcePropType, StyleSheet, Text, View, Image, Pressable } from 'react-native'
+import { useRouter } from 'expo-router';
 
 type cardProps = {
   image: ImageSourcePropType;
@@ -6,13 +7,14 @@ type cardProps = {
 };
 
 const FlashSale = ({ image, rating }: cardProps) => {
+  const router = useRouter();
   return (
-    <View style={styles.container}>
+    <Pressable onPress={() => router.push('/flashSaleScreen')} style={styles.container}>
       <Image style={styles.image} source={image} />
       <View style={styles.ratingContainer}>
         <Text style={styles.rating}>{rating}</Text>
       </View>
-    </View>
+    </Pressable>
   )
 }
 
@@ -20,37 +22,31 @@ export default FlashSale
 
 const styles = StyleSheet.create({
   container: {
-    width: 109,
-    height:114,
+    width: 155,
+    height:155,
     backgroundColor:'#FFFFFF',
-    elevation:10,
     overflow:'hidden',
-    borderRadius: 10,
-    
-    
+    borderRadius: 14,
   },
   image:{
-    width:103 ,
-    height:110,
-    borderRadius:12,
-    alignSelf:'center',
-    padding:3
-    
+    width:'100%',
+    height:'100%',
+    resizeMode: 'cover',
   },
   ratingContainer: {
-    width:39,
-    height:18,
+    minWidth:39,
     backgroundColor:'#FF2D55',
     position:'absolute',
-    right:5,
-    top:5,
-    borderRadius: 5
+    right:8,
+    top:8,
+    borderRadius: 6,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
   },
   rating: {
     color:'white',
-    fontSize:13,
-    lineHeight:17,
-    fontWeight:700,
+    fontSize:10,
+    fontWeight:'700',
     
   }
 

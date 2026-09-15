@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   },
   flashSale: {
     flexDirection: "row",
-    gap: 15,
+    columnGap: 10,
     flexWrap: "wrap",
     marginBottom: 20,
   },
@@ -329,6 +329,7 @@ const styles = StyleSheet.create({
   justForYouContainer: {
     flexWrap: "wrap",
     flexDirection: "row",
-    gap: 20,
+    columnGap: 10,
+    justifyContent: "space-between",
   },
 });
