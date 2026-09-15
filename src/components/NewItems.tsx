@@ -1,4 +1,6 @@
-import { Image, ImageSourcePropType, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
+
+import { ProductCard } from '@/components/ProductCard'
 
 export const shoesData = [
   {
@@ -29,13 +31,18 @@ export const shoesData = [
 
 const NewItems = () => {
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.container}>
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={styles.container}
+    >
       {shoesData.map((item) =>(
-        <View key={item.id} style={styles.cardContainer} >
-          <Image source={item.image} style={styles.image} />
-          <Text style={styles.description}>{item.description}</Text>
-          <Text style={styles.price}>{item.price}</Text>
-        </View>
+        <ProductCard
+          key={item.id}
+          image={item.image}
+          title={item.description}
+          price={item.price}
+        />
       ))}
     </ScrollView>
   )
@@ -45,31 +52,6 @@ export default NewItems
 
 const styles = StyleSheet.create({
   container: {
-    height:247,
-
-  },
-  cardContainer: {
-    width:157,
-    height:237,
-    elevation:10,
-
-  },
-  image: {
-    height:140,
-    width:140,
-    borderRadius:5,
-    elevation:5
-  },
-  description: {
-    fontSize:12,
-    marginTop:2,
-    lineHeight:16,
-    width:140,
-    fontWeight:400
-  },
-  price: {
-    fontWeight:700,
-    fontSize: 17,
-    lineHeight:21
+    paddingBottom: 4,
   }
 })
