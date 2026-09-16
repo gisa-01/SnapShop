@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { ProductCard } from '@/components/ProductCard';
+import MostPopular from '@/components/MostPopular';
 
 const DISCOUNTS = ['All', '10%', '20%', '30%', '40%', '50%'];
 
@@ -64,6 +65,10 @@ export default function FlashSaleScreen() {
               discount={item.discount}
             />
           ))}
+        </View>
+        <View>
+          <Text style={styles.categoryName}>Most Popular</Text>
+          <MostPopular />
         </View>
       </ScrollView>
     </View>
@@ -138,5 +143,12 @@ const styles = StyleSheet.create({
     width:'100%',
     marginVertical:'auto',
 
+  },
+   categoryName: {
+    fontSize: 21,
+    color: "#202020",
+    fontWeight: 700,
+    lineHeight: 30,
+    marginBottom: 15,
   },
 });
