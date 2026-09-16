@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
   grid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    paddingHorizontal: 16,
+    paddingHorizontal:8,
     width:'100%',
     marginVertical:'auto',
 
